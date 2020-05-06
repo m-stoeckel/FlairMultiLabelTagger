@@ -42,7 +42,7 @@ taggers.update({tag: first_tagger})
 
 for tag, tag_dictionary in list(tag_dictionaries.items())[1:]:
     tagger: SequenceTagger = SequenceTagger(
-        hidden_size=64,
+        hidden_size=256,
         embeddings=embeddings,
         tag_dictionary=tag_dictionary,
         tag_type=tag_type,
