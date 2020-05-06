@@ -33,7 +33,7 @@ tagger: SequenceTagger = SequenceTagger(
 
 trainer: ModelTrainer = ModelTrainer(tagger, corpus)
 trainer.train(
-    'resources/taggers/example-ner',
+    'resources/taggers/ordinary-ner',
     learning_rate=0.1,
     mini_batch_size=32,
     max_epochs=150,

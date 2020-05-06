@@ -60,10 +60,10 @@ for tag, tag_dictionary in list(tag_dictionaries.items())[1:]:
 
 trainer: MultiModelTrainer = MultiModelTrainer(taggers, corpus)
 trainer.train(
-    'resources/taggers/example-ner',
+    'resources/taggers/multi-wikiner',
     learning_rate=0.1,
     mini_batch_size=32,
-    max_epochs=3,
+    max_epochs=150,
     monitor_train=True,
     monitor_test=True,
     embeddings_storage_mode="gpu"
