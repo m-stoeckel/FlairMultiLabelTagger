@@ -2,8 +2,9 @@ from typing import List, Dict
 
 import flair
 import torch
-from flair.datasets import ColumnCorpus
-from flair.embeddings import TokenEmbeddings, WordEmbeddings, StackedEmbeddings, CharacterEmbeddings, BytePairEmbeddings
+from flair.datasets import WIKINER_GERMAN
+from flair.embeddings import TokenEmbeddings, WordEmbeddings, StackedEmbeddings, CharacterEmbeddings, \
+    BytePairEmbeddings, FlairEmbeddings
 from flair.models import SequenceTagger
 
 from multi_model_trainer import MultiModelTrainer
@@ -11,8 +12,7 @@ from single_label_corpora import DynamicSingleLabelCorpus
 
 flair.device = torch.device("cuda:0")
 
-corpus = ColumnCorpus("resources/data/", {0: "text", 1: "pos", 2: "ner"}, train_file="test_corpus.conll",
-                      in_memory=True, tag_to_bioes='ner')
+corpus = WIKINER_GERMAN(in_memory=True)
 tag_type = 'ner'
 corpus = DynamicSingleLabelCorpus(corpus, tag_type=tag_type)
 tag_dictionaries = corpus.make_tag_dictionary(tag_type=tag_type)
@@ -21,11 +21,11 @@ for tag, tag_dictionary in tag_dictionaries.items():
 
 # 4. initialize embeddings
 embedding_types: List[TokenEmbeddings] = [
-    WordEmbeddings('de'),
+    WordEmbeddings('de-wiki'),
     BytePairEmbeddings('de', 100, 5000),
     CharacterEmbeddings(),
-    # FlairEmbeddings('de-forward'),
-    # FlairEmbeddings('de-backward')
+    FlairEmbeddings('de-forward'),
+    FlairEmbeddings('de-backward')
 ]
 embeddings: StackedEmbeddings = StackedEmbeddings(embeddings=embedding_types)
 
