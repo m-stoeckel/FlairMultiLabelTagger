@@ -308,6 +308,7 @@ class MultiModelTrainer:
 
                     previous_learning_rate = learning_rate
 
+                    # FIXME: Early Stopping
                     # stop training if learning rate becomes too small
                     if learning_rate < min_learning_rate:
                         log_line(log)

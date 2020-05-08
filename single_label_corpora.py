@@ -159,7 +159,9 @@ class DynamicSingleLabelCorpus(Corpus):
             self._train_subsets.update(
                 {base_tag: Subset(self._train, self.get_indices(self._train, self.tag_sets[base_tag], tag_type))})
             self._dev_subsets.update(
-                {base_tag: Subset(self._dev, self.get_indices(self._dev, self.tag_sets[base_tag], tag_type))})
+                {base_tag: FilteringSubset(self._dev,
+                                           self.get_indices(self._dev, self.tag_sets[base_tag], tag_type),
+                                           self.tag_sets[base_tag])})
             self._test_subsets.update(
                 {base_tag: FilteringSubset(self._test,
                                            self.get_indices(self._test, self.tag_sets[base_tag], tag_type),

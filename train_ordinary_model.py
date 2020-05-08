@@ -36,7 +36,7 @@ trainer.train(
     'resources/taggers/ordinary-ner',
     learning_rate=0.1,
     mini_batch_size=32,
-    max_epochs=150,
+    max_epochs=25,
     monitor_train=True,
     monitor_test=True,
     embeddings_storage_mode="gpu"
