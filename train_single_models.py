@@ -58,5 +58,5 @@ trainer.train(
     max_epochs=25,
     monitor_train=True,
     monitor_test=True,
-    embeddings_storage_mode="gpu"
+    # embeddings_storage_mode="gpu"
 )

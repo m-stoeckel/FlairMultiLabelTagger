@@ -10,7 +10,7 @@ from flair.trainers.trainer import ModelTrainer
 
 flair.device = torch.device("cuda:0")
 
-corpus = WIKINER_GERMAN(in_memory=True)
+corpus = WIKINER_GERMAN(in_memory=False)
 tag_type = 'ner'
 tag_dictionary = corpus.make_tag_dictionary(tag_type=tag_type)
 
@@ -39,5 +39,5 @@ trainer.train(
     max_epochs=25,
     monitor_train=True,
     monitor_test=True,
-    embeddings_storage_mode="gpu"
+    # embeddings_storage_mode="gpu"
 )
