@@ -12,7 +12,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.optim.sgd import SGD
 from torch.utils.data.dataset import ConcatDataset
 
-from single_label_corpora import DynamicSingleLabelCorpus
+from single_label_corpora import DynamicSingleLabelCorpus, MultiLabelColumnCorpus
 
 try:
     from apex import amp
@@ -40,7 +40,7 @@ class MultiModelTrainer:
     def __init__(
             self,
             models: Dict[str, flair.nn.Model],
-            corpus: DynamicSingleLabelCorpus,
+            corpus: Union[DynamicSingleLabelCorpus, MultiLabelColumnCorpus],
             optimizer: torch.optim.Optimizer = SGD,
             epoch: int = 0,
             use_tensorboard: bool = False,
